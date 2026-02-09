@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Shopping App</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #f4f4f4; }
+        .box { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        .counters { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+        .counter-box { background: #eee; padding: 10px 20px; border-radius: 5px; }
+        .number { display: block; font-size: 24px; font-weight: bold; color: blue; }
+
+        .btn { padding: 10px 15px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; color: white; font-weight: bold; }
+        .add { background: green; }
+        .minus { background: red; }
+        .wish { background: purple; }
+        .sale { background: orange; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1>Cart</h1>
+
+        <div class="counters">
+            <div class="counter-box">
+                Bag: <span id="bag-count" class="number">0</span>
+            </div>
+            <div class="counter-box">
+                Wishlist: <span id="wish-count" class="number">0</span>
+            </div>
+        </div>
+
+        <button class="btn add" onclick="add()">Add to Bag (+)</button>
+        <button class="btn minus" onclick="remove()">Minus (-)</button>
+        <br>
+        <button class="btn wish" onclick="moveToWishlist()">Move to Wishlist</button>
+        <button class="btn sale" onclick="addSale()">Add Sale Item</button>
+    </div>
+
+    <script>
+        let bag = 0;
+        let wishlist = 0;
+
+        function update() {
+            document.getElementById('bag-count').innerText = bag;
+            document.getElementById('wish-count').innerText = wishlist;
+        }
+
+        function add() {
+            bag++;
+            update();
+        }
+
+        function remove() {
+            if (bag > 0) bag--;
+            update();
+        }
+
+        function addSale() {
+            bag++; // Adds one sale item to bag
+            update();
+        }
+
+        function moveToWishlist() {
+            if (bag > 0) {
+                bag--;      // Take one out of bag
+                wishlist++; // Put one in wishlist
+                update();
+            }
+        }
+    </script>
+
+</body>
+</html>
